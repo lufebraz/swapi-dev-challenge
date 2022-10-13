@@ -1,6 +1,6 @@
 package com.challenge.starwarsfilms.model;
 
-import com.challenge.starwarsfilms.dto.SWFilm;
+import com.challenge.starwarsfilms.dto.ResultClientResponse;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -25,15 +25,21 @@ public class TbStarWarsMovies {
     private String producer;
     private String releaseDate;
     private Integer version;
+    private String created;
+    private String edited;
+    private String url;
 
-    public TbStarWarsMovies(SWFilm swFilm) {
-        this.title = swFilm.getTitle();
-        this.episodeId = swFilm.getEpisodeId();
-        this.director = swFilm.getDirector();
-        this.openingCrawl = swFilm.getOpeningCrawl();
-        this.producer = swFilm.getProducer();
-        this.releaseDate = swFilm.getReleaseDate();
+    public TbStarWarsMovies(ResultClientResponse result) {
+        this.title = result.getTitle();
+        this.episodeId = result.getEpisodeId();
+        this.director = result.getDirector();
+        this.openingCrawl = result.getOpeningCrawl();
+        this.producer = result.getProducer();
+        this.releaseDate = result.getReleaseDate();
         this.version = 1;
+        this.created = result.getCreated();
+        this.edited = result.getEdited();
+        this.url = result.getUrl();
     }
 
 

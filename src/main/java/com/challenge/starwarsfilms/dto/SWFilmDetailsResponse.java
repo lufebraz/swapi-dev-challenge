@@ -16,8 +16,10 @@ public class SWFilmDetailsResponse {
     private String director;
     private String producer;
     private String releaseDate;
-
     private Integer version;
+    private String created;
+    private String edited;
+    private String url;
 
     public SWFilmDetailsResponse(TbStarWarsMovies film) {
         this.episodeId = film.getEpisodeId();
@@ -27,5 +29,8 @@ public class SWFilmDetailsResponse {
         this.producer = film.getProducer();
         this.releaseDate = film.getReleaseDate();
         this.version = film.getVersion();
+        this.created = film.getCreated();
+        this.edited = film.getEdited();
+        this.url = film.getUrl();
     }
 }

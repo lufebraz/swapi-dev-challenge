@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class SWFilm {
+public class ResultClientResponse {
     @JsonProperty("episode_id")
     private Integer episodeId;
     private String title;
@@ -18,4 +18,7 @@ public class SWFilm {
     private String producer;
     @JsonProperty("release_date")
     private String releaseDate;
+    private String created;
+    private String edited;
+    private String url;
 }

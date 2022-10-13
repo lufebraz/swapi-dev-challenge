@@ -1,7 +1,7 @@
 package com.challenge.starwarsfilms.service;
 
 import com.challenge.starwarsfilms.dto.SWFilmDetailsResponse;
-import com.challenge.starwarsfilms.dto.SWFilmsResponse;
+import com.challenge.starwarsfilms.dto.RootClientResponse;
 import com.challenge.starwarsfilms.dto.SWListAllResponse;
 import com.challenge.starwarsfilms.model.TbStarWarsMovies;
 import com.challenge.starwarsfilms.repository.MainRepository;
@@ -40,9 +40,9 @@ public class MainService {
 
     public void initialSave() {
         init();
-        SWFilmsResponse response = rest.getForEntity(
+        RootClientResponse response = rest.getForEntity(
                 swApiUrl,
-                SWFilmsResponse.class).getBody();
+                RootClientResponse.class).getBody();
 
         if (response != null) {
             repository.saveAll(

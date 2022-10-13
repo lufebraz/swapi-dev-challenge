@@ -1,20 +1,16 @@
 package com.challenge.starwarsfilms.service;
 
 import com.challenge.starwarsfilms.dto.SWFilmDetailsResponse;
-import com.challenge.starwarsfilms.dto.SWFilmsResponse;
+import com.challenge.starwarsfilms.dto.RootClientResponse;
 import com.challenge.starwarsfilms.model.TbStarWarsMovies;
 import com.challenge.starwarsfilms.repository.MainRepository;
 import org.junit.jupiter.api.Test;
-import org.mockito.ArgumentMatchers;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
-import java.net.URI;
-import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
