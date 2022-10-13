@@ -50,9 +50,9 @@ public class MainService {
                             .map(TbStarWarsMovies::new)
                             .collect(Collectors.toList()));
             log.info("JUST SAVED LOTS OF INTERGALACTIC MOVIES!!");
+        } else {
+            log.info("NO MOVIES WERE FOUND :(  !!");
         }
-        log.info("NO MOVIES WERE FOUND :(  !!");
-
     }
 
 

@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -21,4 +23,9 @@ public class ResultClientResponse {
     private String created;
     private String edited;
     private String url;
+    private List<String> characters;
+    private List<String> planets;
+    private List<String> starships;
+    private List<String> vehicles;
+    private List<String> species;
 }

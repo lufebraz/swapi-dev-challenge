@@ -4,8 +4,12 @@ import com.challenge.starwarsfilms.dto.ResultClientResponse;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Data
 @AllArgsConstructor
@@ -29,6 +33,31 @@ public class TbStarWarsMovies {
     private String edited;
     private String url;
 
+    @OneToMany
+    @JoinColumn
+    @Cascade(org.hibernate.annotations.CascadeType.ALL)
+    private List<TbCharacters> tbCharacters = new ArrayList<>();
+
+    @OneToMany
+    @JoinColumn
+    @Cascade(org.hibernate.annotations.CascadeType.ALL)
+    private List<TbPlanets> tbPlanets = new ArrayList<>();
+
+    @OneToMany
+    @JoinColumn
+    @Cascade(org.hibernate.annotations.CascadeType.ALL)
+    private List<TbStarships> tbStarships = new ArrayList<>();
+
+    @OneToMany
+    @JoinColumn
+    @Cascade(org.hibernate.annotations.CascadeType.ALL)
+    private List<TbVehicles> tbVehicles = new ArrayList<>();
+
+    @OneToMany
+    @JoinColumn
+    @Cascade(org.hibernate.annotations.CascadeType.ALL)
+    private List<TbSpecies> tbSpecies = new ArrayList<>();
+
     public TbStarWarsMovies(ResultClientResponse result) {
         this.title = result.getTitle();
         this.episodeId = result.getEpisodeId();
@@ -40,6 +69,11 @@ public class TbStarWarsMovies {
         this.created = result.getCreated();
         this.edited = result.getEdited();
         this.url = result.getUrl();
+        this.tbCharacters = result.getCharacters().stream().map(TbCharacters::new).collect(Collectors.toList());
+        this.tbPlanets = result.getPlanets().stream().map(TbPlanets::new).collect(Collectors.toList());
+        this.tbStarships = result.getStarships().stream().map(TbStarships::new).collect(Collectors.toList());
+        this.tbVehicles = result.getVehicles().stream().map(TbVehicles::new).collect(Collectors.toList());
+        this.tbSpecies = result.getSpecies().stream().map(TbSpecies::new).collect(Collectors.toList());
     }
 
 
