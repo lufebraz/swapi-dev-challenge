@@ -11,7 +11,7 @@
 	<groupId>com.challenge</groupId>
 	<artifactId>starwarsfilms</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>starwarsfilms</name>
+	<name>star-wars-films</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
 		<java.version>11</java.version>
