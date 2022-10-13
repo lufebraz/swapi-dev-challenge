@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -16,6 +17,9 @@ public class TbVehicles {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String url;
+
+    @ManyToMany(mappedBy = "tbVehicles")
+    private List<TbStarWarsMovies> tbStarWarsMovies;
     TbVehicles(String url) {
         this.url = url;
     }

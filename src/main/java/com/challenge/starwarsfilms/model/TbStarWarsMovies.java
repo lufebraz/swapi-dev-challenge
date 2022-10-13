@@ -33,28 +33,28 @@ public class TbStarWarsMovies {
     private String edited;
     private String url;
 
-    @OneToMany
-    @JoinColumn
+    @ManyToMany
+    @JoinColumn(name = "id")
     @Cascade(org.hibernate.annotations.CascadeType.ALL)
     private List<TbCharacters> tbCharacters = new ArrayList<>();
 
-    @OneToMany
-    @JoinColumn
+    @ManyToMany
+    @JoinColumn(name = "id")
     @Cascade(org.hibernate.annotations.CascadeType.ALL)
     private List<TbPlanets> tbPlanets = new ArrayList<>();
 
-    @OneToMany
-    @JoinColumn
+    @ManyToMany
+    @JoinColumn(name = "id")
     @Cascade(org.hibernate.annotations.CascadeType.ALL)
     private List<TbStarships> tbStarships = new ArrayList<>();
 
-    @OneToMany
-    @JoinColumn
+    @ManyToMany
+    @JoinColumn(name = "id")
     @Cascade(org.hibernate.annotations.CascadeType.ALL)
     private List<TbVehicles> tbVehicles = new ArrayList<>();
 
-    @OneToMany
-    @JoinColumn
+    @ManyToMany
+    @JoinColumn(name = "id")
     @Cascade(org.hibernate.annotations.CascadeType.ALL)
     private List<TbSpecies> tbSpecies = new ArrayList<>();
 
