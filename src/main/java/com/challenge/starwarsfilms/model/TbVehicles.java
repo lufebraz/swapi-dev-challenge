@@ -3,7 +3,6 @@ package com.challenge.starwarsfilms.model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 
@@ -15,14 +14,8 @@ import javax.persistence.*;
 public class TbVehicles {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long Id;
+    private Long id;
     private String url;
-
-    @ManyToOne
-    @JoinColumn
-    @Cascade(org.hibernate.annotations.CascadeType.ALL)
-    private TbStarWarsMovies tbStarWarsMovies;
-
     TbVehicles(String url) {
         this.url = url;
     }

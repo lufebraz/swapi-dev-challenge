@@ -39,19 +39,23 @@ public class MainService {
     }
 
     public void initialSave() {
-        init();
-        RootClientResponse response = rest.getForEntity(
-                swApiUrl,
-                RootClientResponse.class).getBody();
+        log.info("SEARCHING FOR INTERGALACTIC MOVIES .....");
+        try {
+            init();
+            ResponseEntity<RootClientResponse> response = rest.getForEntity(
+                    swApiUrl,
+                    RootClientResponse.class);
 
-        if (response != null) {
+            RootClientResponse body = response.getBody();
             repository.saveAll(
-                    response.getResults().stream()
+                    body.getResults().stream()
                             .map(TbStarWarsMovies::new)
                             .collect(Collectors.toList()));
-            log.info("JUST SAVED LOTS OF INTERGALACTIC MOVIES!!");
-        } else {
-            log.info("NO MOVIES WERE FOUND :(  !!");
+            log.info("JUST SAVED SOME INTERGALACTIC MOVIES!!");
+
+        } catch (Exception e) {
+            log.info("SOMETHING REALLY, REALLLLYYY BAD HAPPENED TRYING TO GET THOSE MOVIES!! :( ");
+            log.info(e.getMessage());
         }
     }
 
@@ -76,11 +80,11 @@ public class MainService {
         return ResponseEntity.noContent().build();
     }
 
-    public ResponseEntity<Object> editDescription(Integer id, String description) {
+    public ResponseEntity<Object> editOpeningCrawl(Integer id, String openingCrawl) {
         Optional<TbStarWarsMovies> film = findFilmById(id);
         if (film.isPresent()) {
             TbStarWarsMovies movieDB = film.get();
-            movieDB.setOpeningCrawl(description);
+            movieDB.setOpeningCrawl(openingCrawl);
             movieDB.setVersion(movieDB.getVersion() + 1);
             repository.save(movieDB);
             return ResponseEntity.ok(new SWFilmDetailsResponse(movieDB));

@@ -23,7 +23,6 @@ public class SWFilmDetailsResponse {
     private String created;
     private String edited;
     private String url;
-
     private List<String> characters;
     private List<String> planets;
     private List<String> starships;

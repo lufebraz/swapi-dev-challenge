@@ -7,6 +7,6 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class DescriptionRequest {
-    private String description;
+public class OpeningCrawlRequest {
+    private String openingCrawl;
 }

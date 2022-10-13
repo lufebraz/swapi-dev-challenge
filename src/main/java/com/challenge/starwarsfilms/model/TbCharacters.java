@@ -3,10 +3,8 @@ package com.challenge.starwarsfilms.model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -16,14 +14,9 @@ import java.util.List;
 public class TbCharacters {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long Id;
+    private Long id;
+    @Column
     private String url;
-
-    @ManyToOne
-    @JoinColumn
-    @Cascade(org.hibernate.annotations.CascadeType.ALL)
-    private TbStarWarsMovies tbStarWarsMovies;
-
     TbCharacters(String url) {
         this.url = url;
     }

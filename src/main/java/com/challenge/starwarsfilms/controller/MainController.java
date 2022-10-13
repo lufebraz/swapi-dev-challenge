@@ -1,6 +1,6 @@
 package com.challenge.starwarsfilms.controller;
 
-import com.challenge.starwarsfilms.dto.DescriptionRequest;
+import com.challenge.starwarsfilms.dto.OpeningCrawlRequest;
 import com.challenge.starwarsfilms.service.MainService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -25,8 +25,8 @@ public class MainController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Object> editDescription(@PathVariable Integer id,
-                                                  @RequestBody DescriptionRequest description){
-        return service.editDescription(id, description.getDescription());
+    public ResponseEntity<Object> editOpeningCrawl(@PathVariable Integer id,
+                                                  @RequestBody OpeningCrawlRequest description){
+        return service.editOpeningCrawl(id, description.getOpeningCrawl());
     };
 }

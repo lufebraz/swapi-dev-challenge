@@ -1,15 +1,12 @@
 package com.challenge.starwarsfilms.service;
 
 import com.challenge.starwarsfilms.dto.SWFilmDetailsResponse;
-import com.challenge.starwarsfilms.dto.RootClientResponse;
 import com.challenge.starwarsfilms.model.TbStarWarsMovies;
 import com.challenge.starwarsfilms.repository.MainRepository;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,20 +24,6 @@ public class MainServiceTest {
 
     @Mock
     MainRepository repository;
-
-    @Mock
-    RestTemplate rest;
-
-    @Value("${star-wars.api.url}")
-    private String swApiUrl;
-
-// TODO
-//    @Test
-//    public void initialSaveSuccess() {
-//        when(rest.getForEntity(swApiUrl, SWFilmsResponse.class))
-//                .thenReturn(null);
-//        service.initialSave();
-//    }
 
     @Test
     public void findAllTest_NoContent() {
@@ -72,7 +55,7 @@ public class MainServiceTest {
         Integer id = 1;
         String newDescription = "THIS IS THE NEW DESCRIPTION";
         when(repository.findById(anyInt())).thenReturn(Optional.of(getMovie()));
-        SWFilmDetailsResponse response = (SWFilmDetailsResponse) service.editDescription(id, newDescription).getBody();
+        SWFilmDetailsResponse response = (SWFilmDetailsResponse) service.editOpeningCrawl(id, newDescription).getBody();
 
         assertEquals(2, response.getVersion());
         assertEquals(newDescription, response.getOpeningCrawl());
@@ -83,7 +66,7 @@ public class MainServiceTest {
         Integer id = 1;
         String newDescription = "THIS IS THE NEW DESCRIPTION";
         when(repository.findById(id)).thenReturn(Optional.ofNullable(nullable(TbStarWarsMovies.class)));
-        assertEquals(204, service.editDescription(id, newDescription).getStatusCodeValue());
+        assertEquals(204, service.editOpeningCrawl(id, newDescription).getStatusCodeValue());
     }
 
     public List<TbStarWarsMovies> getAllMovies() {
