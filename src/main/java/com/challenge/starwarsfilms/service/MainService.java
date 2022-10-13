@@ -1,6 +1,5 @@
 package com.challenge.starwarsfilms.service;
 
-import com.challenge.starwarsfilms.dto.SWFilm;
 import com.challenge.starwarsfilms.dto.SWFilmDetailsResponse;
 import com.challenge.starwarsfilms.dto.SWFilmsResponse;
 import com.challenge.starwarsfilms.dto.SWListAllResponse;
@@ -26,36 +25,39 @@ public class MainService {
     @Value("${star-wars.api.url}")
     private String swApiUrl;
     @Autowired
-    MainRepository mainRepository;
-    RestTemplate restTemplate;
+    MainRepository repository;
+    RestTemplate rest;
 
-    public MainService(MainRepository mainRepository) {
-        this.mainRepository = mainRepository;
+    public MainService(MainRepository repository) {
+        this.repository = repository;
     }
 
     private void init() {
-        if (restTemplate == null){
-            this.restTemplate = new RestTemplate();
+        if (rest == null){
+            this.rest = new RestTemplate();
         }
     }
 
     public void initialSave() {
         init();
-        SWFilmsResponse response = restTemplate.getForEntity(
+        SWFilmsResponse response = rest.getForEntity(
                 swApiUrl,
                 SWFilmsResponse.class).getBody();
 
-        mainRepository.saveAll(
-                response.getResults().stream()
-                        .map(TbStarWarsMovies::new)
-                        .collect(Collectors.toList()));
+        if (response != null) {
+            repository.saveAll(
+                    response.getResults().stream()
+                            .map(TbStarWarsMovies::new)
+                            .collect(Collectors.toList()));
+            log.info("JUST SAVED LOTS OF INTERGALACTIC MOVIES!!");
+        }
+        log.info("NO MOVIES WERE FOUND :(  !!");
 
-        log.info("JUST SAVED LOTS OF INTERGALACTIC MOVIES!!");
     }
 
 
     public ResponseEntity<Object> findAll() {
-        Optional<List<TbStarWarsMovies>> filmsList = Optional.of(mainRepository.findAll());
+        Optional<List<TbStarWarsMovies>> filmsList = Optional.of(repository.findAll());
         if (filmsList.get().size() > 0) {
             return ResponseEntity.ok(
                     filmsList.get().stream()
@@ -80,15 +82,15 @@ public class MainService {
             TbStarWarsMovies movieDB = film.get();
             movieDB.setOpeningCrawl(description);
             movieDB.setVersion(movieDB.getVersion() + 1);
-            mainRepository.save(movieDB);
-            return ResponseEntity.ok().build();
+            repository.save(movieDB);
+            return ResponseEntity.ok(new SWFilmDetailsResponse(movieDB));
         } else {
             return ResponseEntity.noContent().build();
         }
     }
 
     private Optional<TbStarWarsMovies> findFilmById(Integer id) {
-        Optional<TbStarWarsMovies> film = mainRepository.findById(id);
+        Optional<TbStarWarsMovies> film = repository.findById(id);
         return film;
     }
 }
