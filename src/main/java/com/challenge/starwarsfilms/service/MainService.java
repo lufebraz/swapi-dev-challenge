@@ -24,8 +24,9 @@ public class MainService {
 
     @Value("${star-wars.api.url}")
     private String swApiUrl;
-    @Autowired
+
     MainRepository repository;
+
     RestTemplate rest;
 
     public MainService(MainRepository repository) {

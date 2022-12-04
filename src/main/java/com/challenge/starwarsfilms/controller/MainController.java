@@ -9,11 +9,10 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("api/v1/films")
 public class MainController {
 
+    MainService service;
     public MainController(MainService service) {
         this.service = service;
     }
-    MainService service;
-
     @GetMapping
     public ResponseEntity<Object> findAll() {
         return service.findAll();
